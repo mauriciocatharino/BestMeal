@@ -1,0 +1,40 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "br.com.abim.bestmeal",
+      "nativeLanguage": "pt-br"
+    },
+    "jhipsterVersion": "6.0.1",
+    "applicationType": "monolith",
+    "baseName": "bestmeal",
+    "packageName": "br.com.abim.bestmeal",
+    "packageFolder": "br/com/abim/bestmeal",
+    "serverPort": "8080",
+    "authenticationType": "jwt",
+    "cacheProvider": "ehcache",
+    "enableHibernateCache": true,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "postgresql",
+    "prodDatabaseType": "postgresql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": false,
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "ZThhMzM3ZDYxYmI4ODQwYThkMTE5YTc4OWNlYzUxOWIwNjBiZjE1M2ZkMjdkMjc0ZWRlN2RhOTc1MDEwNmZjZDE3ZjliYTFiYTk2YjIzNzlkOThmNjhiNjZlMmM4YmFlYWRjZGI0ZWQ2NzBiMjVlMTdjYTg4ZmY3NDljMGQwNWE=",
+    "clientFramework": "angularX",
+    "clientTheme": "none",
+    "clientThemeVariant": "",
+    "useSass": true,
+    "clientPackageManager": "npm",
+    "testFrameworks": ["protractor"],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": true,
+    "nativeLanguage": "pt-br",
+    "languages": ["pt-br"]
+  }
+}
