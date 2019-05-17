@@ -1,0 +1,60 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bestmealApp.cartaoCredito.home.title">Cartao Creditos</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-cartao-credito" [routerLink]="['/cartao-credito/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="bestmealApp.cartaoCredito.home.createLabel">
+            Create new Cartao Credito
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="cartaoCreditos">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span jhiTranslate="global.field.id">ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="bandeira"><span jhiTranslate="bestmealApp.cartaoCredito.bandeira">Bandeira</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="numero"><span jhiTranslate="bestmealApp.cartaoCredito.numero">Numero</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cv"><span jhiTranslate="bestmealApp.cartaoCredito.cv">Cv</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="validade"><span jhiTranslate="bestmealApp.cartaoCredito.validade">Validade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let cartaoCredito of cartaoCreditos ;trackBy: trackId">
+                <td><a [routerLink]="['/cartao-credito', cartaoCredito.id, 'view' ]">{{cartaoCredito.id}}</a></td>
+                <td jhiTranslate="{{'bestmealApp.Bandeira.' + cartaoCredito.bandeira}}">{{cartaoCredito.bandeira}}</td>
+                <td>{{cartaoCredito.numero}}</td>
+                <td>{{cartaoCredito.cv}}</td>
+                <td>{{cartaoCredito.validade}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/cartao-credito', cartaoCredito.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/cartao-credito', cartaoCredito.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'cartao-credito', { outlets: { popup: cartaoCredito.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

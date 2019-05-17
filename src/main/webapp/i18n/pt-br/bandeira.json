@@ -1,0 +1,11 @@
+{
+  "bestmealApp": {
+    "Bandeira": {
+      "null": "",
+      "MASTER": "MASTER",
+      "VISA": "VISA",
+      "ELO": "ELO",
+      "DINNERS": "DINNERS"
+    }
+  }
+}
