@@ -7,12 +7,20 @@ export const enum Bandeira {
 
 export interface ICartaoCredito {
   id?: number;
+  nomeCartao?: string;
   bandeira?: Bandeira;
   numero?: string;
-  cv?: string;
+  cvv?: string;
   validade?: string;
 }
 
 export class CartaoCredito implements ICartaoCredito {
-  constructor(public id?: number, public bandeira?: Bandeira, public numero?: string, public cv?: string, public validade?: string) {}
+  constructor(
+    public id?: number,
+    public nomeCartao?: string,
+    public bandeira?: Bandeira,
+    public numero?: string,
+    public cvv?: string,
+    public validade?: string
+  ) {}
 }

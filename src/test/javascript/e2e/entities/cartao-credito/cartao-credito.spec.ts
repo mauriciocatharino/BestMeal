@@ -40,13 +40,15 @@ describe('CartaoCredito e2e test', () => {
 
     await cartaoCreditoComponentsPage.clickOnCreateButton();
     await promise.all([
+      cartaoCreditoUpdatePage.setNomeCartaoInput('nomeCartao'),
       cartaoCreditoUpdatePage.bandeiraSelectLastOption(),
       cartaoCreditoUpdatePage.setNumeroInput('numero'),
-      cartaoCreditoUpdatePage.setCvInput('cv'),
+      cartaoCreditoUpdatePage.setCvvInput('cvv'),
       cartaoCreditoUpdatePage.setValidadeInput('validade')
     ]);
+    expect(await cartaoCreditoUpdatePage.getNomeCartaoInput()).to.eq('nomeCartao', 'Expected NomeCartao value to be equals to nomeCartao');
     expect(await cartaoCreditoUpdatePage.getNumeroInput()).to.eq('numero', 'Expected Numero value to be equals to numero');
-    expect(await cartaoCreditoUpdatePage.getCvInput()).to.eq('cv', 'Expected Cv value to be equals to cv');
+    expect(await cartaoCreditoUpdatePage.getCvvInput()).to.eq('cvv', 'Expected Cvv value to be equals to cvv');
     expect(await cartaoCreditoUpdatePage.getValidadeInput()).to.eq('validade', 'Expected Validade value to be equals to validade');
     await cartaoCreditoUpdatePage.save();
     expect(await cartaoCreditoUpdatePage.getSaveButton().isPresent(), 'Expected save button disappear').to.be.false;

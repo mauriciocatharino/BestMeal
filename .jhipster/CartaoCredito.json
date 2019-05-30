@@ -4,6 +4,13 @@
     "relationships": [],
     "fields": [
         {
+            "fieldName": "nomeCartao",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "bandeira",
             "fieldType": "Bandeira",
             "fieldValues": "MASTER,VISA,ELO,DINNERS"
@@ -13,7 +20,7 @@
             "fieldType": "String"
         },
         {
-            "fieldName": "cv",
+            "fieldName": "cvv",
             "fieldType": "String"
         },
         {

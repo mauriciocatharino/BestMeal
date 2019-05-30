@@ -35,14 +35,17 @@ import br.com.abim.bestmeal.domain.enumeration.Bandeira;
 @SpringBootTest(classes = BestmealApp.class)
 public class CartaoCreditoResourceIT {
 
+    private static final String DEFAULT_NOME_CARTAO = "AAAAAAAAAA";
+    private static final String UPDATED_NOME_CARTAO = "BBBBBBBBBB";
+
     private static final Bandeira DEFAULT_BANDEIRA = Bandeira.MASTER;
     private static final Bandeira UPDATED_BANDEIRA = Bandeira.VISA;
 
     private static final String DEFAULT_NUMERO = "AAAAAAAAAA";
     private static final String UPDATED_NUMERO = "BBBBBBBBBB";
 
-    private static final String DEFAULT_CV = "AAAAAAAAAA";
-    private static final String UPDATED_CV = "BBBBBBBBBB";
+    private static final String DEFAULT_CVV = "AAAAAAAAAA";
+    private static final String UPDATED_CVV = "BBBBBBBBBB";
 
     private static final String DEFAULT_VALIDADE = "AAAAA";
     private static final String UPDATED_VALIDADE = "BBBBB";
@@ -92,9 +95,10 @@ public class CartaoCreditoResourceIT {
      */
     public static CartaoCredito createEntity(EntityManager em) {
         CartaoCredito cartaoCredito = new CartaoCredito()
+            .nomeCartao(DEFAULT_NOME_CARTAO)
             .bandeira(DEFAULT_BANDEIRA)
             .numero(DEFAULT_NUMERO)
-            .cv(DEFAULT_CV)
+            .cvv(DEFAULT_CVV)
             .validade(DEFAULT_VALIDADE);
         return cartaoCredito;
     }
@@ -106,9 +110,10 @@ public class CartaoCreditoResourceIT {
      */
     public static CartaoCredito createUpdatedEntity(EntityManager em) {
         CartaoCredito cartaoCredito = new CartaoCredito()
+            .nomeCartao(UPDATED_NOME_CARTAO)
             .bandeira(UPDATED_BANDEIRA)
             .numero(UPDATED_NUMERO)
-            .cv(UPDATED_CV)
+            .cvv(UPDATED_CVV)
             .validade(UPDATED_VALIDADE);
         return cartaoCredito;
     }
@@ -133,9 +138,10 @@ public class CartaoCreditoResourceIT {
         List<CartaoCredito> cartaoCreditoList = cartaoCreditoRepository.findAll();
         assertThat(cartaoCreditoList).hasSize(databaseSizeBeforeCreate + 1);
         CartaoCredito testCartaoCredito = cartaoCreditoList.get(cartaoCreditoList.size() - 1);
+        assertThat(testCartaoCredito.getNomeCartao()).isEqualTo(DEFAULT_NOME_CARTAO);
         assertThat(testCartaoCredito.getBandeira()).isEqualTo(DEFAULT_BANDEIRA);
         assertThat(testCartaoCredito.getNumero()).isEqualTo(DEFAULT_NUMERO);
-        assertThat(testCartaoCredito.getCv()).isEqualTo(DEFAULT_CV);
+        assertThat(testCartaoCredito.getCvv()).isEqualTo(DEFAULT_CVV);
         assertThat(testCartaoCredito.getValidade()).isEqualTo(DEFAULT_VALIDADE);
     }
 
@@ -158,6 +164,24 @@ public class CartaoCreditoResourceIT {
         assertThat(cartaoCreditoList).hasSize(databaseSizeBeforeCreate);
     }
 
+
+    @Test
+    @Transactional
+    public void checkNomeCartaoIsRequired() throws Exception {
+        int databaseSizeBeforeTest = cartaoCreditoRepository.findAll().size();
+        // set the field null
+        cartaoCredito.setNomeCartao(null);
+
+        // Create the CartaoCredito, which fails.
+
+        restCartaoCreditoMockMvc.perform(post("/api/cartao-creditos")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(cartaoCredito)))
+            .andExpect(status().isBadRequest());
+
+        List<CartaoCredito> cartaoCreditoList = cartaoCreditoRepository.findAll();
+        assertThat(cartaoCreditoList).hasSize(databaseSizeBeforeTest);
+    }
 
     @Test
     @Transactional
@@ -188,9 +212,10 @@ public class CartaoCreditoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(cartaoCredito.getId().intValue())))
+            .andExpect(jsonPath("$.[*].nomeCartao").value(hasItem(DEFAULT_NOME_CARTAO.toString())))
             .andExpect(jsonPath("$.[*].bandeira").value(hasItem(DEFAULT_BANDEIRA.toString())))
             .andExpect(jsonPath("$.[*].numero").value(hasItem(DEFAULT_NUMERO.toString())))
-            .andExpect(jsonPath("$.[*].cv").value(hasItem(DEFAULT_CV.toString())))
+            .andExpect(jsonPath("$.[*].cvv").value(hasItem(DEFAULT_CVV.toString())))
             .andExpect(jsonPath("$.[*].validade").value(hasItem(DEFAULT_VALIDADE.toString())));
     }
     
@@ -205,9 +230,10 @@ public class CartaoCreditoResourceIT {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(cartaoCredito.getId().intValue()))
+            .andExpect(jsonPath("$.nomeCartao").value(DEFAULT_NOME_CARTAO.toString()))
             .andExpect(jsonPath("$.bandeira").value(DEFAULT_BANDEIRA.toString()))
             .andExpect(jsonPath("$.numero").value(DEFAULT_NUMERO.toString()))
-            .andExpect(jsonPath("$.cv").value(DEFAULT_CV.toString()))
+            .andExpect(jsonPath("$.cvv").value(DEFAULT_CVV.toString()))
             .andExpect(jsonPath("$.validade").value(DEFAULT_VALIDADE.toString()));
     }
 
@@ -232,9 +258,10 @@ public class CartaoCreditoResourceIT {
         // Disconnect from session so that the updates on updatedCartaoCredito are not directly saved in db
         em.detach(updatedCartaoCredito);
         updatedCartaoCredito
+            .nomeCartao(UPDATED_NOME_CARTAO)
             .bandeira(UPDATED_BANDEIRA)
             .numero(UPDATED_NUMERO)
-            .cv(UPDATED_CV)
+            .cvv(UPDATED_CVV)
             .validade(UPDATED_VALIDADE);
 
         restCartaoCreditoMockMvc.perform(put("/api/cartao-creditos")
@@ -246,9 +273,10 @@ public class CartaoCreditoResourceIT {
         List<CartaoCredito> cartaoCreditoList = cartaoCreditoRepository.findAll();
         assertThat(cartaoCreditoList).hasSize(databaseSizeBeforeUpdate);
         CartaoCredito testCartaoCredito = cartaoCreditoList.get(cartaoCreditoList.size() - 1);
+        assertThat(testCartaoCredito.getNomeCartao()).isEqualTo(UPDATED_NOME_CARTAO);
         assertThat(testCartaoCredito.getBandeira()).isEqualTo(UPDATED_BANDEIRA);
         assertThat(testCartaoCredito.getNumero()).isEqualTo(UPDATED_NUMERO);
-        assertThat(testCartaoCredito.getCv()).isEqualTo(UPDATED_CV);
+        assertThat(testCartaoCredito.getCvv()).isEqualTo(UPDATED_CVV);
         assertThat(testCartaoCredito.getValidade()).isEqualTo(UPDATED_VALIDADE);
     }
 

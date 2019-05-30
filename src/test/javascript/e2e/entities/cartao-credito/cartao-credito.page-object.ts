@@ -26,13 +26,22 @@ export class CartaoCreditoUpdatePage {
   pageTitle = element(by.id('jhi-cartao-credito-heading'));
   saveButton = element(by.id('save-entity'));
   cancelButton = element(by.id('cancel-save'));
+  nomeCartaoInput = element(by.id('field_nomeCartao'));
   bandeiraSelect = element(by.id('field_bandeira'));
   numeroInput = element(by.id('field_numero'));
-  cvInput = element(by.id('field_cv'));
+  cvvInput = element(by.id('field_cvv'));
   validadeInput = element(by.id('field_validade'));
 
   async getPageTitle() {
     return this.pageTitle.getAttribute('jhiTranslate');
+  }
+
+  async setNomeCartaoInput(nomeCartao) {
+    await this.nomeCartaoInput.sendKeys(nomeCartao);
+  }
+
+  async getNomeCartaoInput() {
+    return await this.nomeCartaoInput.getAttribute('value');
   }
 
   async setBandeiraSelect(bandeira) {
@@ -58,12 +67,12 @@ export class CartaoCreditoUpdatePage {
     return await this.numeroInput.getAttribute('value');
   }
 
-  async setCvInput(cv) {
-    await this.cvInput.sendKeys(cv);
+  async setCvvInput(cvv) {
+    await this.cvvInput.sendKeys(cvv);
   }
 
-  async getCvInput() {
-    return await this.cvInput.getAttribute('value');
+  async getCvvInput() {
+    return await this.cvvInput.getAttribute('value');
   }
 
   async setValidadeInput(validade) {

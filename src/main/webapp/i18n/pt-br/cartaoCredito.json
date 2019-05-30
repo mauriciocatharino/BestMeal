@@ -15,9 +15,10 @@
       "detail": {
         "title": "Cartao Credito"
       },
+      "nomeCartao": "Nome Cartao",
       "bandeira": "Bandeira",
       "numero": "Numero",
-      "cv": "Cv",
+      "cvv": "CVV",
       "validade": "Validade"
     }
   }

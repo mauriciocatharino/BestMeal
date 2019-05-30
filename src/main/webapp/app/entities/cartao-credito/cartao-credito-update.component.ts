@@ -5,24 +5,41 @@ import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { ICartaoCredito, CartaoCredito } from 'app/shared/model/cartao-credito.model';
 import { CartaoCreditoService } from './cartao-credito.service';
+import { CustomNameValidatorService } from '../../shared/validators/custom-name-service';
+import { CustomDateValidatorService } from '../../shared/validators/custom-date-service';
+import moment = require('moment');
 
 @Component({
   selector: 'jhi-cartao-credito-update',
   templateUrl: './cartao-credito-update.component.html'
 })
 export class CartaoCreditoUpdateComponent implements OnInit {
+  mesano: string = moment().format('MM/YYYY'); // >> alterado aqui
   cartaoCredito: ICartaoCredito;
   isSaving: boolean;
 
   editForm = this.fb.group({
     id: [],
+    nomeCartao: [
+      null,
+      [Validators.required, Validators.minLength(10), Validators.maxLength(40), this.nameValidatorService.forbiddenNameValidator(/bosco/i)]
+    ], // >>> Alterado aqui
     bandeira: [],
     numero: [],
-    cv: [],
-    validade: [null, [Validators.required, Validators.minLength(5), Validators.maxLength(5)]]
+    cvv: [],
+    validade: [
+      null,
+      [Validators.required, Validators.minLength(7), Validators.maxLength(7), this.dateValidateService.expireDateValidator(this.mesano)]
+    ]
   });
 
-  constructor(protected cartaoCreditoService: CartaoCreditoService, protected activatedRoute: ActivatedRoute, private fb: FormBuilder) {}
+  constructor(
+    protected cartaoCreditoService: CartaoCreditoService,
+    protected activatedRoute: ActivatedRoute,
+    private fb: FormBuilder,
+    protected nameValidatorService: CustomNameValidatorService,
+    protected dateValidateService: CustomDateValidatorService // >>> Alterado aqui
+  ) {}
 
   ngOnInit() {
     this.isSaving = false;
@@ -35,9 +52,10 @@ export class CartaoCreditoUpdateComponent implements OnInit {
   updateForm(cartaoCredito: ICartaoCredito) {
     this.editForm.patchValue({
       id: cartaoCredito.id,
+      nomeCartao: cartaoCredito.nomeCartao,
       bandeira: cartaoCredito.bandeira,
       numero: cartaoCredito.numero,
-      cv: cartaoCredito.cv,
+      cvv: cartaoCredito.cvv,
       validade: cartaoCredito.validade
     });
   }
@@ -60,9 +78,10 @@ export class CartaoCreditoUpdateComponent implements OnInit {
     const entity = {
       ...new CartaoCredito(),
       id: this.editForm.get(['id']).value,
+      nomeCartao: this.editForm.get(['nomeCartao']).value,
       bandeira: this.editForm.get(['bandeira']).value,
       numero: this.editForm.get(['numero']).value,
-      cv: this.editForm.get(['cv']).value,
+      cvv: this.editForm.get(['cvv']).value,
       validade: this.editForm.get(['validade']).value
     };
     return entity;

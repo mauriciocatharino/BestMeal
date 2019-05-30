@@ -5,6 +5,10 @@
             <hr>
             <jhi-alert-error></jhi-alert-error>
             <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bestmealApp.cartaoCredito.nomeCartao">Nome Cartao</span></dt>
+                <dd>
+                    <span>{{cartaoCredito.nomeCartao}}</span>
+                </dd>
                 <dt><span jhiTranslate="bestmealApp.cartaoCredito.bandeira">Bandeira</span></dt>
                 <dd>
                     <span jhiTranslate="{{'bestmealApp.Bandeira.' + cartaoCredito.bandeira}}">{{cartaoCredito.bandeira}}</span>
@@ -13,9 +17,9 @@
                 <dd>
                     <span>{{cartaoCredito.numero}}</span>
                 </dd>
-                <dt><span jhiTranslate="bestmealApp.cartaoCredito.cv">Cv</span></dt>
+                <dt><span jhiTranslate="bestmealApp.cartaoCredito.cvv">Cvv</span></dt>
                 <dd>
-                    <span>{{cartaoCredito.cv}}</span>
+                    <span>{{cartaoCredito.cvv}}</span>
                 </dd>
                 <dt><span jhiTranslate="bestmealApp.cartaoCredito.validade">Validade</span></dt>
                 <dd>

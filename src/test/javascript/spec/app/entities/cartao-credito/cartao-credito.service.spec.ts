@@ -23,7 +23,7 @@ describe('Service Tests', () => {
       service = injector.get(CartaoCreditoService);
       httpMock = injector.get(HttpTestingController);
 
-      elemDefault = new CartaoCredito(0, Bandeira.MASTER, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
+      elemDefault = new CartaoCredito(0, 'AAAAAAA', Bandeira.MASTER, 'AAAAAAA', 'AAAAAAA', 'AAAAAAA');
     });
 
     describe('Service methods', () => {
@@ -59,9 +59,10 @@ describe('Service Tests', () => {
       it('should update a CartaoCredito', async () => {
         const returnedFromService = Object.assign(
           {
+            nomeCartao: 'BBBBBB',
             bandeira: 'BBBBBB',
             numero: 'BBBBBB',
-            cv: 'BBBBBB',
+            cvv: 'BBBBBB',
             validade: 'BBBBBB'
           },
           elemDefault
@@ -80,9 +81,10 @@ describe('Service Tests', () => {
       it('should return a list of CartaoCredito', async () => {
         const returnedFromService = Object.assign(
           {
+            nomeCartao: 'BBBBBB',
             bandeira: 'BBBBBB',
             numero: 'BBBBBB',
-            cv: 'BBBBBB',
+            cvv: 'BBBBBB',
             validade: 'BBBBBB'
           },
           elemDefault

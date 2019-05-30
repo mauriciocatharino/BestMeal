@@ -27,6 +27,10 @@ public class CartaoCredito implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
+    @NotNull
+    @Column(name = "nome_cartao", nullable = false)
+    private String nomeCartao;
+
     @Enumerated(EnumType.STRING)
     @Column(name = "bandeira")
     private Bandeira bandeira;
@@ -34,12 +38,12 @@ public class CartaoCredito implements Serializable {
     @Column(name = "numero")
     private String numero;
 
-    @Column(name = "cv")
-    private String cv;
+    @Column(name = "cvv")
+    private String cvv;
 
     @NotNull
-    @Size(min = 5, max = 5)
-    @Column(name = "validade", length = 5, nullable = false)
+    @Size(min = 7, max = 7)
+    @Column(name = "validade", length = 7, nullable = false)
     private String validade;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -49,6 +53,19 @@ public class CartaoCredito implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public String getNomeCartao() {
+        return nomeCartao;
+    }
+
+    public CartaoCredito nomeCartao(String nomeCartao) {
+        this.nomeCartao = nomeCartao;
+        return this;
+    }
+
+    public void setNomeCartao(String nomeCartao) {
+        this.nomeCartao = nomeCartao;
     }
 
     public Bandeira getBandeira() {
@@ -77,17 +94,17 @@ public class CartaoCredito implements Serializable {
         this.numero = numero;
     }
 
-    public String getCv() {
-        return cv;
+    public String getCvv() {
+        return cvv;
     }
 
-    public CartaoCredito cv(String cv) {
-        this.cv = cv;
+    public CartaoCredito cvv(String cvv) {
+        this.cvv = cvv;
         return this;
     }
 
-    public void setCv(String cv) {
-        this.cv = cv;
+    public void setCvv(String cvv) {
+        this.cvv = cvv;
     }
 
     public String getValidade() {
@@ -124,9 +141,10 @@ public class CartaoCredito implements Serializable {
     public String toString() {
         return "CartaoCredito{" +
             "id=" + getId() +
+            ", nomeCartao='" + getNomeCartao() + "'" +
             ", bandeira='" + getBandeira() + "'" +
             ", numero='" + getNumero() + "'" +
-            ", cv='" + getCv() + "'" +
+            ", cvv='" + getCvv() + "'" +
             ", validade='" + getValidade() + "'" +
             "}";
     }
