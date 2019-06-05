@@ -1,0 +1,71 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="pessoa">
+            <h2><span jhiTranslate="bestmealApp.pessoa.detail.title">Pessoa</span> {{pessoa.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span jhiTranslate="bestmealApp.pessoa.tipo">Tipo</span></dt>
+                <dd>
+                    <span>{{pessoa.tipo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.cpf">Cpf</span></dt>
+                <dd>
+                    <span>{{pessoa.cpf}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.cnpj">Cnpj</span></dt>
+                <dd>
+                    <span>{{pessoa.cnpj}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.primeiroNome">Primeiro Nome</span></dt>
+                <dd>
+                    <span>{{pessoa.primeiroNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.nomeMeio">Nome Meio</span></dt>
+                <dd>
+                    <span>{{pessoa.nomeMeio}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.sobreNome">Sobre Nome</span></dt>
+                <dd>
+                    <span>{{pessoa.sobreNome}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.saudacao">Saudacao</span></dt>
+                <dd>
+                    <span>{{pessoa.saudacao}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.titulo">Titulo</span></dt>
+                <dd>
+                    <span>{{pessoa.titulo}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.cep">Cep</span></dt>
+                <dd>
+                    <span>{{pessoa.cep}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.tipoLogradouro">Tipo Logradouro</span></dt>
+                <dd>
+                    <span>{{pessoa.tipoLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.nomeLogradouro">Nome Logradouro</span></dt>
+                <dd>
+                    <span>{{pessoa.nomeLogradouro}}</span>
+                </dd>
+                <dt><span jhiTranslate="bestmealApp.pessoa.complemento">Complemento</span></dt>
+                <dd>
+                    <span>{{pessoa.complemento}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.back"> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/pessoa', pessoa.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span jhiTranslate="entity.action.edit"> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

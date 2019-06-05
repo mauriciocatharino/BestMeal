@@ -1,0 +1,99 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "tipo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cpf",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "cnpj",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "primeiroNome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": "20"
+        },
+        {
+            "fieldName": "nomeMeio",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "sobreNome",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "2",
+            "fieldValidateRulesMaxlength": "30"
+        },
+        {
+            "fieldName": "saudacao",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "titulo",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "3",
+            "fieldValidateRulesMaxlength": "15"
+        },
+        {
+            "fieldName": "cep",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "tipoLogradouro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "nomeLogradouro",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "complemento",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required",
+                "minlength",
+                "maxlength"
+            ],
+            "fieldValidateRulesMinlength": "0",
+            "fieldValidateRulesMaxlength": "30"
+        }
+    ],
+    "changelogDate": "20190605205429",
+    "dto": "no",
+    "searchEngine": false,
+    "service": "no",
+    "entityTableName": "pessoa",
+    "databaseType": "sql",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

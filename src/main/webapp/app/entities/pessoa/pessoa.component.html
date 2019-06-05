@@ -1,0 +1,76 @@
+<div>
+    <h2 id="page-heading">
+        <span jhiTranslate="bestmealApp.pessoa.home.title">Pessoas</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-pessoa" [routerLink]="['/pessoa/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span  jhiTranslate="bestmealApp.pessoa.home.createLabel">
+            Create new Pessoa
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="table-responsive" *ngIf="pessoas">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+            <th><span jhiTranslate="global.field.id">ID</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.tipo">Tipo</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.cpf">Cpf</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.cnpj">Cnpj</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.primeiroNome">Primeiro Nome</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.nomeMeio">Nome Meio</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.sobreNome">Sobre Nome</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.saudacao">Saudacao</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.titulo">Titulo</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.cep">Cep</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.tipoLogradouro">Tipo Logradouro</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.nomeLogradouro">Nome Logradouro</span></th>
+            <th><span jhiTranslate="bestmealApp.pessoa.complemento">Complemento</span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let pessoa of pessoas ;trackBy: trackId">
+                <td><a [routerLink]="['/pessoa', pessoa.id, 'view' ]">{{pessoa.id}}</a></td>
+                <td>{{pessoa.tipo}}</td>
+                <td>{{pessoa.cpf}}</td>
+                <td>{{pessoa.cnpj}}</td>
+                <td>{{pessoa.primeiroNome}}</td>
+                <td>{{pessoa.nomeMeio}}</td>
+                <td>{{pessoa.sobreNome}}</td>
+                <td>{{pessoa.saudacao}}</td>
+                <td>{{pessoa.titulo}}</td>
+                <td>{{pessoa.cep}}</td>
+                <td>{{pessoa.tipoLogradouro}}</td>
+                <td>{{pessoa.nomeLogradouro}}</td>
+                <td>{{pessoa.complemento}}</td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/pessoa', pessoa.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.view">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/pessoa', pessoa.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.edit">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'pessoa', { outlets: { popup: pessoa.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline" jhiTranslate="entity.action.delete">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
